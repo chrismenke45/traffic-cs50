@@ -100,6 +100,9 @@ def get_model():
         tf.keras.layers.Dense(128, activation='relu'),
         tf.keras.layers.Dropout(0.2),
 
+        tf.keras.layers.Dense(128, activation='relu'),
+        tf.keras.layers.Dropout(0.2),
+
         # Output layer with NUM_CATEGORIES units
         tf.keras.layers.Dense(NUM_CATEGORIES, activation="softmax")
     ])
