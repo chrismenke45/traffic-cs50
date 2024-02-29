@@ -3,6 +3,7 @@ import numpy as np
 import os
 import sys
 import tensorflow as tf
+import time
 
 from sklearn.model_selection import train_test_split
 
@@ -92,14 +93,17 @@ def get_model():
        
         # Max-Pooling layer using 2x2 pool size
         tf.keras.layers.MaxPooling2D(pool_size=(2,2)),
+
+        # Convolutional Layer - learn 32 filters using 3x3 kernal
+        tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(IMG_WIDTH, IMG_HEIGHT, 3)),
+       
+        # Max-Pooling layer using 2x2 pool size
+        tf.keras.layers.MaxPooling2D(pool_size=(2,2)),
         
         # Flatten units
         tf.keras.layers.Flatten(),
 
-        # Hidden layer with dropout
-        tf.keras.layers.Dense(128, activation='relu'),
-        tf.keras.layers.Dropout(0.2),
-
+        # Hidden layers with dropout
         tf.keras.layers.Dense(128, activation='relu'),
         tf.keras.layers.Dropout(0.2),
 
@@ -115,6 +119,8 @@ def get_model():
     
     return model
 
-
 if __name__ == "__main__":
+    #start = time.time()
     main()
+    #end = time.time()
+    #print(end - start)
